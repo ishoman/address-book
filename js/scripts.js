@@ -25,6 +25,7 @@ $(document).ready(function() {
 
   $("#add-address").click(function() {
     $("#new-addresses").append('<div class="new-address">' +
+                                '<div class="address-container">' +
                                  '<div class="form-group">' +
                                    '<label for="address-type">Address Type (home, work, etc.): </label>' +
                                    '<input type="text" class="form-control address-type">' +
@@ -41,12 +42,14 @@ $(document).ready(function() {
                                    '<label for="new-state">State</label>' +
                                    '<input type="text" class="form-control new-state">' +
                                  '</div>' +
+                                '</div>' +
                                '</div>');
+
   });
 
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
-
+    $(".address-container").remove();
     var inputtedFirstName = $("input#new-first-name").val();
     var inputtedLastName = $("input#new-last-name").val();
     var newContact = new Contact(inputtedFirstName, inputtedLastName);
@@ -72,6 +75,7 @@ $(document).ready(function() {
         $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
       });
     });
+
 
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
